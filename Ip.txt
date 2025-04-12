@@ -1,0 +1,37 @@
+Sales 172.16.0.5/24 172.16.0.1
+
+b2server.pt.pka  128.107.64.254
+
+
+PC>tracert b2server.pt.pka
+
+Tracing route to 128.107.64.254 over a maximum of 30 hops: 
+
+  1   0 ms      0 ms      1 ms      172.16.0.1
+  2   2 ms      0 ms      2 ms      64.100.150.2
+  3   1 ms      1 ms      1 ms      64.104.222.2
+  4   1 ms      1 ms      1 ms      64.104.222.6
+  5   *         1 ms      1 ms      128.107.64.254
+
+
+
+1  R4
+GigabitEthernet0/0     172.16.0.1      YES manual up                    
+Serial0/0/0            64.100.150.1    Y
+Serial0/0/1            unassigned      
+Serial0/0/1.1          64.100.200.1    YES manual up                     
+2 Tier3a
+GigabitEthernet0/0     64.104.222.1    YES manual up                    
+GigabitEthernet0/1     64.104.223.1    YES manual up                    
+Serial0/0/0            64.100.100.2    YES manual up                    
+Serial0/1/0            64.100.150.2                      
+
+3 64.104.222.2 ISP-Tier3b
+FastEthernet0/1        128.107.46.1    YES manual up                    
+FastEthernet0/2        64.104.222.5    YES manual up                    
+GigabitEthernet0/1     64.104.222.2    YES manual up                    
+GigabitEthernet0/2     64.100.8.1      YES manual up                    
+
+4. 64.104.222.6 B2-R1#
+GigabitEthernet0/0     64.104.222.6    YES manual up                    
+GigabitEthernet0/1     128.107.64.1
